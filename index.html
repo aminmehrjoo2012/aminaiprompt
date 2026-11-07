@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aminai Prompt | AI Prompt Library</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #090909;
+  color: #fff;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #292216;
+}
+
+.logo {
+  color: #e9bd59;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header span {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 15px 35px;
+}
+
+.hero h1 {
+  font-size: 35px;
+  color: #e9bd59;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #aaa;
+  line-height: 2;
+}
+
+.search {
+  width: 90%;
+  max-width: 520px;
+  padding: 16px;
+  margin-top: 20px;
+  background: #171717;
+  border: 1px solid #80652f;
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.search:focus {
+  border-color: #e9bd59;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+}
+
+.category {
+  background: #171717;
+  color: #d9b65e;
+  border: 1px solid #594621;
+  border-radius: 30px;
+  padding: 10px 17px;
+  cursor: pointer;
+}
+
+.category.active,
+.category:hover {
+  background: #d9ae4c;
+  color: #111;
+}
+
+.section-title {
+  width: 90%;
+  max-width: 1100px;
+  margin: 35px auto 20px;
+  color: #e9bd59;
+  font-size: 22px;
+}
+
+.cards {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #151515;
+  border: 1px solid #30291c;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #c79d43;
+}
+
+.card img {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 17px;
+}
+
+.card h3 {
+  color: #e9bd59;
+  font-size: 18px;
+}
+
+.card p {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.prompt {
+  background: #0b0b0b;
+  border: 1px solid #30291c;
+  border-radius: 9px;
+  padding: 12px;
+  direction: ltr;
+  text-align: left;
+  color: #ddd;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.copy {
+  width: 100%;
+  padding: 12px;
+  margin-top: 13px;
+  background: linear-gradient(135deg, #f0cb72, #b4862c);
+  color: #111;
+  border: none;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.copy:active {
+  transform: scale(.98);
+}
+
+.empty {
+  display: none;
+  text-align: center;
+  color: #aaa;
+  padding: 35px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 60px;
+  border-top: 1px solid #292216;
+  color: #777;
+  font-size: 13px;
+}
+
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 27px;
+  }
+
+  header {
+    padding: 18px 5%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">✦ Aminai Prompt</div>
+  <span>AI PROMPT LIBRARY</span>
+</header>
+
+<section class="hero">
+  <h1>دنیای خلاقیت با هوش مصنوعی</h1>
+  <p>
+    پرامپت‌های حرفه‌ای را پیدا کن، کپی کن و ایده‌هایت را خلق کن.
+    <br>
+    Discover amazing AI prompts.
+  </p>
+
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="جستجوی پرامپت... Search prompts"
+    oninput="filterCards()"
+  >
+</section>
+
+<div class="categories">
+  <button class="category active" onclick="chooseCategory('all', this)">همه</button>
+  <button class="category" onclick="chooseCategory('portrait', this)">پرتره</button>
+  <button class="category" onclick="chooseCategory('city', this)">شهر</button>
+  <button class="category" onclick="chooseCategory('animal', this)">حیوانات</button>
+</div>
+
+<h2 class="section-title">✦ پرامپت‌های منتخب</h2>
+
+<main class="cards" id="cards">
+
+  <article class="card" data-category="portrait">
+    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700" alt="Portrait">
+    <div class="card-content">
+      <h3>🎨 پرتره سینمایی</h3>
+      <p>ساخت پرتره با نورپردازی حرفه‌ای</p>
+      <div class="prompt">
+        A cinematic portrait, professional photography, beautiful golden lighting, ultra detailed, 4K
+      </div>
+      <button class="copy" onclick="copyPrompt(this)">📋 کپی پرامپت</button>
+    </div>
+  </article>
+
+  <article class="card" data-category="city">
+    <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700" alt="City">
+    <div class="card-content">
+      <h3>🌆 شهر آینده</h3>
+      <p>یک شهر مدرن با نورهای طلایی</p>
+      <div class="prompt">
+        A futuristic city at night, golden lights, beautiful architecture, cinematic atmosphere, digital art
+      </div>
+      <button class="copy" onclick="copyPrompt(this)">📋 کپی پرامپت</button>
+    </div>
+  </article>
+
+  <article class="card" data-category="animal">
+    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=700" alt="Cat">
+    <div class="card-content">
+      <h3>🐱 گربه فانتزی</h3>
+      <p>خلق تصویر هنری از یک گربه زیبا</p>
+      <div class="prompt">
+        A cute fantasy cat in a magical forest, glowing golden particles, beautiful digital art
+      </div>
+      <button class="copy" onclick="copyPrompt(this)">📋 کپی پرامپت</button>
+    </div>
+  </article>
+
+  <article class="card" data-category="portrait">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700" alt="Fashion">
+    <div class="card-content">
+      <h3>✨ عکاسی فشن</h3>
+      <p>سبک عکاسی مد و پرتره هنری</p>
+      <div class="prompt">
+        Fashion editorial portrait, elegant studio lighting, luxury photography, high detail
+      </div>
+      <button class="copy" onclick="copyPrompt(this)">📋 کپی پرامپت</button>
+    </div>
+  </article>
+
+</main>
+
+<div class="empty" id="empty">
+  پرامپتی پیدا نشد! دوباره جستجو کن.
+</div>
+
+<footer>
+  <div class="logo">Aminai Prompt</div>
+  <p>Explore • Create • Imagine</p>
+  © 2026 Aminai Prompt
+</footer>
+
+<script>
+let selectedCategory = "all";
+
+function filterCards() {
+  const search = document.getElementById("search")
+    .value.toLowerCase();
+
+  const cards = document.querySelectorAll(".card");
+  let count = 0;
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    const category = card.dataset.category;
+
+    const matchesSearch = text.includes(search);
+    const matchesCategory =
+      selectedCategory === "all" ||
+      category === selectedCategory;
+
+    if (matchesSearch && matchesCategory) {
+      card.style.display = "block";
+      count++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  document.getElementById("empty").style.display =
+    count === 0 ? "block" : "none";
+}
+
+function chooseCategory(category, button) {
+  selectedCategory = category;
+
+  document.querySelectorAll(".category").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+  filterCards();
+}
+
+async function copyPrompt(button) {
+  const text = button.previousElementSibling.innerText;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    button.innerText = "✓ کپی شد!";
+  } catch (error) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+
+    const copied = document.execCommand("copy");
+    area.remove();
+
+    button.innerText = copied ? "✓ کپی شد!" : "متن را دستی کپی کن";
+  }
+
+  setTimeout(() => {
+    button.innerText = "📋 کپی پرامپت";
+  }, 1800);
+}
+</script>
+
+</body>
+</html>
